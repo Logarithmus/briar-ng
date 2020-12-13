@@ -32,10 +32,10 @@
 }
 
 # Change here com.yourcompany.yourpackage
--keep,includedescriptorclasses class dev.logarithmus.briarimproved.**$$serializer { *; } # <-- change package name to your app's
--keepclassmembers class dev.logarithmus.briarimproved.** { # <-- change package name to your app's
+-keep,includedescriptorclasses class dev.logarithmus.briarng.**$$serializer { *; } # <-- change package name to your app's
+-keepclassmembers class dev.logarithmus.briarng.** { # <-- change package name to your app's
     *** Companion;
 }
--keepclasseswithmembers class dev.logarithmus.briarimproved.** { # <-- change package name to your app's
+-keepclasseswithmembers class dev.logarithmus.briarng.** { # <-- change package name to your app's
     kotlinx.serialization.KSerializer serializer(...);
 }

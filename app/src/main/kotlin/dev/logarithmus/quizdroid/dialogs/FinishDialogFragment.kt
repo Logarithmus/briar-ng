@@ -1,11 +1,11 @@
-package dev.logarithmus.briarimproved.dialogs
+package dev.logarithmus.briarng.dialogs
 
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
-import dev.logarithmus.briarimproved.R
+import dev.logarithmus.briarng.R
 import kotlin.system.exitProcess
 
 class FinishDialogFragment: DialogFragment() {

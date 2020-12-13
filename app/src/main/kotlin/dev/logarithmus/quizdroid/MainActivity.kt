@@ -1,4 +1,4 @@
-package dev.logarithmus.briarimproved
+package dev.logarithmus.briarng
 
 import android.annotation.SuppressLint
 import android.graphics.Color
@@ -7,10 +7,10 @@ import android.view.View
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.appcompat.app.AppCompatActivity
-import dev.logarithmus.briarimproved.databinding.ActivityMainBinding
-import dev.logarithmus.briarimproved.dialogs.ExitDialogFragment
-import dev.logarithmus.briarimproved.dialogs.FinishDialogFragment
-import dev.logarithmus.briarimproved.dialogs.ResultsDialogFragment
+import dev.logarithmus.briarng.databinding.ActivityMainBinding
+import dev.logarithmus.briarng.dialogs.ExitDialogFragment
+import dev.logarithmus.briarng.dialogs.FinishDialogFragment
+import dev.logarithmus.briarng.dialogs.ResultsDialogFragment
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json

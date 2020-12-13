@@ -12,7 +12,7 @@ android {
     compileSdkVersion(30)
     buildToolsVersion("30.0.2")
     defaultConfig {
-        applicationId = "dev.logarithmus.briarimproved"
+        applicationId = "dev.logarithmus.briarng"
         minSdkVersion(19)
         targetSdkVersion(30)
         versionCode = 1
