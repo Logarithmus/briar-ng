@@ -16,7 +16,7 @@ RM = rm -f
 GREP = grep
 
 
-all: $(COURSE_REPORT_PDF).pdf $(TITLE_PDF).pdf
+all: fast
 
 
 publish_to_dropbox: all
@@ -24,8 +24,8 @@ publish_to_dropbox: all
 	cp $(PRACTICE_REPORT_PDF).pdf $(DROPBOX_PUBLIC)/$(PRACTICE_REPORT_PDF).pdf
 
 fast: *.tex
-	latexmk -pdf -pdflatex="pdflatex" $(DIPLOMA_REPORT_PDF)
-	mv $(DIPLOMA_REPORT_PDF).pdf $(DIPLOMA_REPORT_PDF)-`date +'%m-%d-%H-%M-%S'`.pdf
+	latexmk -pdf -pdflatex="pdflatex" $(COURSE_REPORT_PDF)
+# mv $(COURSE_REPORT_PDF).pdf $(COURSE_REPORT_PDF)-`date +'%m-%d-%H-%M-%S'`.pdf
 
 fastcheck: *.tex
 	$(PDFLATEX) $(DIPLOMA_REPORT_PDF)
