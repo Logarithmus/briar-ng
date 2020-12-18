@@ -4,4 +4,91 @@
 \addcontentsline{toc}{section}{Приложение А (обязательное) Листинг программного кода}
 \label{sec:source_code}
 
-ntcn1
+\begin{lstlisting}[language=XML, 
+label=lst:arch_and_mod:net_persistence:bnxml]
+<network>                                                                                                             
+  <variables> 
+    <variable id="1" dim="2" />
+    <variable id="2" dim="3" />
+  </variables>
+  <node_attributes>
+    <node variable_id="1"> <answered>false</answered> </node>
+    <node variable_id="2"> <answered>true</answered>  </node>
+  </node_attributes> 
+  <link_attributes>
+    <link parent_id="1" child_id="2" />
+  </link_attributes>
+  <variable_annotations>
+    <variable_annotation variable_id="1">
+      <name>My variable</name>
+      <annotations>
+        <label>Yes</label> <label>No</label>
+      </annotations>
+    </variable_annotation>
+    <variable_annotation variable_id="2">
+      <name>Color</name>
+      <annotations>
+        <label>Red</label> <label>Green</label> <label>Blue</label>
+      </annotations>
+    </variable_annotation>
+  </variable_annotations>
+  <probability_tables>
+    <probability_table variable_id="1">
+      <vector>0.2 0.8</vector>
+    </probability_table>
+    <probability_table variable_id="2">
+      <vector>0.4 0.3 0.3</vector>
+    </probability_table>
+  </probability_tables>
+  <forward_probability_tables>
+    <forward_probability_table variable_id="2" condition_variable_id="1">
+      <matrix nrows="3" ncols="2">0.1 0.2 0.7 0.6 0.1 0.3</matrix>
+    </forward_probability_table>
+  </forward_probability_tables>
+</network>
+\end{lstlisting}
+
+\clearpage
+\begin{lstlisting}[language=XML,
+label=lst:arch_and_mod:net_persistence:bnxml]
+<network>                                                                                                             
+  <variables> 
+    <variable id="1" dim="2" />
+    <variable id="2" dim="3" />
+  </variables>
+  <node_attributes>
+    <node variable_id="1"> <answered>false</answered> </node>
+    <node variable_id="2"> <answered>true</answered>  </node>
+  </node_attributes> 
+  <link_attributes>
+    <link parent_id="1" child_id="2" />
+  </link_attributes>
+  <variable_annotations>
+    <variable_annotation variable_id="1">
+      <name>My variable</name>
+      <annotations>
+        <label>Yes</label> <label>No</label>
+      </annotations>
+    </variable_annotation>
+    <variable_annotation variable_id="2">
+      <name>Color</name>
+      <annotations>
+        <label>Red</label> <label>Green</label> <label>Blue</label>
+      </annotations>
+    </variable_annotation>
+  </variable_annotations>
+  <probability_tables>
+    <probability_table variable_id="1">
+      <vector>0.2 0.8</vector>
+    </probability_table>
+    <probability_table variable_id="2">
+      <vector>0.4 0.3 0.3</vector>
+    </probability_table>
+  </probability_tables>
+  <forward_probability_tables>
+    <forward_probability_table variable_id="2" condition_variable_id="1">
+      <matrix nrows="3" ncols="2">0.1 0.2 0.7 0.6 0.1 0.3</matrix>
+    </forward_probability_table>
+  </forward_probability_tables>
+</network>
+\end{lstlisting}
