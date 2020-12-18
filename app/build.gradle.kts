@@ -12,8 +12,8 @@ android {
     compileSdkVersion(30)
     buildToolsVersion("30.0.2")
     defaultConfig {
-        applicationId = "dev.logarithmus.briarng"
-        minSdkVersion(19)
+        applicationId = "dev.logarithmus.p2pdroid"
+        minSdkVersion(15)
         targetSdkVersion(30)
         versionCode = 1
         versionName = "0.1.0"
