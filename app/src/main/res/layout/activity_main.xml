@@ -1,65 +1,71 @@
-<!--
-  Copyright 2013 The Android Open Source Project
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
 
-      http://www.apache.org/licenses/LICENSE-2.0
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
-  -->
-<LinearLayout
-      xmlns:android="http://schemas.android.com/apk/res/android"
-      android:orientation="vertical"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:id="@+id/sample_main_layout">
+        <RelativeLayout
+            android:id="@+id/scan_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_xxxxxxlarge"
+            android:layout_marginTop="@dimen/margin_small"
+            android:orientation="horizontal"
+            android:visibility="gone">
 
-    <ViewAnimator
-          android:id="@+id/sample_output"
-          android:layout_width="match_parent"
-          android:layout_height="0px"
-          android:layout_weight="1">
+            <ProgressBar
+                android:id="@+id/gif1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true" />
 
-        <ScrollView
-              style="@style/Widget.SampleMessageTile"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+            <com.an.customfontview.CustomTextView
+                android:id="@+id/progress_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/margin"
+                android:layout_toRightOf="@+id/gif1"
+                android:gravity="center_vertical"
+                android:text="@string/scan_init"
+                android:textColor="@color/fragment_history_date"
+                android:textSize="@dimen/font_small_medium"
+                app:textFontPath="fonts/montserrat_regular.otf" />
 
-            <TextView
-                  style="@style/Widget.SampleMessage"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:paddingLeft="@dimen/horizontal_page_margin"
-                  android:paddingRight="@dimen/horizontal_page_margin"
-                  android:paddingTop="@dimen/vertical_page_margin"
-                  android:paddingBottom="@dimen/vertical_page_margin"
-                  android:text="@string/intro_message" />
-        </ScrollView>
+        </RelativeLayout>
 
-        <fragment
-              android:name="dev.logarithmus.p2pdroid.common.logger.LogFragment"
-              android:id="@+id/log_fragment"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent" />
 
-    </ViewAnimator>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/scanned_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin"
+            android:clipToPadding="false" />
 
-    <View
-          android:layout_width="match_parent"
-          android:layout_height="1dp"
-          android:background="@android:color/darker_gray" />
 
-    <FrameLayout
-          android:id="@+id/sample_content_fragment"
-          android:layout_weight="2"
-          android:layout_width="match_parent"
-          android:layout_height="0px" />
+        <com.an.customfontview.CustomTextView
+            android:visibility="gone"
+            android:id="@+id/scanned_empty_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_large"
+            android:gravity="center"
+            android:lineSpacingExtra="4sp"
+            android:text="@string/bt_scanning_error"
+            android:textColor="@color/fragment_history_date"
+            android:textSize="@dimen/font_medium"
+            app:textFontPath="fonts/montserrat_regular.otf" />
 
-</LinearLayout>
 
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

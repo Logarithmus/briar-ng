@@ -34,6 +34,9 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.20")
     implementation("androidx.constraintlayout:constraintlayout:2.0.4")
     implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("androidx.cardview:cardview:1.0.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
+    implementation("com.wifiscanner:wifiscanner:0.1.2")
+    implementation("androidx.recyclerview:recyclerview:1.1.0")
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.0.0")
+    implementation("androidx.fragment:fragment-ktx:1.2.5")
 }
