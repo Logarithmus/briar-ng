@@ -15,7 +15,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
-        android:name="dev.logarithmus.dev.logarithmus.p2pdroid.ChatApplication"
+        android:name=".ChatApplication"
         android:allowBackup="false"
         android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@mipmap/ic_launcher"
@@ -26,7 +26,7 @@
         tools:replace="android:allowBackup">
 
         <activity
-            android:name="dev.logarithmus.dev.logarithmus.p2pdroid.ui.activity.SplashActivity"
+            android:name=".ui.activity.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <intent-filter>
@@ -46,64 +46,61 @@
         </activity>
 
         <activity
-            android:name="dev.logarithmus.dev.logarithmus.p2pdroid.ui.activity.ConversationsActivity"
+            android:name=".ui.activity.ConversationsActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="dev.logarithmus.dev.logarithmus.p2pdroid.ui.activity.ScanActivity"
+            android:name=".ui.activity.ScanActivity"
             android:label="@string/scan__scan"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="dev.logarithmus.dev.logarithmus.p2pdroid.ui.activity.ChatActivity"
+            android:name=".ui.activity.ChatActivity"
             android:label="@string/chat__chat"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize|stateHidden" />
 
         <activity
-            android:name="dev.logarithmus.dev.logarithmus.p2pdroid.ui.activity.ProfileActivity"
+            android:name=".ui.activity.ProfileActivity"
             android:label="@string/initial_setup__initial_setup"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
 
         <activity
-            android:name="dev.logarithmus.dev.logarithmus.p2pdroid.ui.activity.SettingsActivity"
+            android:name=".ui.activity.SettingsActivity"
             android:label="@string/settings__title"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="dev.logarithmus.dev.logarithmus.p2pdroid.ui.activity.ContactChooserActivity"
+            android:name=".ui.activity.ContactChooserActivity"
             android:label="@string/contact_chooser__title"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="dev.logarithmus.dev.logarithmus.p2pdroid.ui.activity.ImagePreviewActivity"
+            android:name=".ui.activity.ImagePreviewActivity"
             android:label="@string/images__image"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="dev.logarithmus.dev.logarithmus.p2pdroid.ui.activity.ReceivedImagesActivity"
+            android:name=".ui.activity.ReceivedImagesActivity"
             android:label="@string/images__received_images"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="dev.logarithmus.dev.logarithmus.p2pdroid.ui.activity.AboutActivity"
+            android:name=".ui.activity.AboutActivity"
             android:label="@string/about__about"
             android:screenOrientation="portrait" />
 
-        <service android:name="dev.logarithmus.dev.logarithmus.p2pdroid.data.service.BluetoothConnectionService" />
+        <service android:name=".data.service.BluetoothConnectionService" />
 
-        <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value="b26de0978fcc0fa56349d97da37b554f54e1d034" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
         <provider
-            android:name="dev.logarithmus.dev.logarithmus.p2pdroid.data.file.GenericFileProvider"
+            android:name=".data.file.GenericFileProvider"
             android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true">

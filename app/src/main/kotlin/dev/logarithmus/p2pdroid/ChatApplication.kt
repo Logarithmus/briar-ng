@@ -3,14 +3,12 @@ package dev.logarithmus.p2pdroid
 import android.app.Activity
 import android.app.Application
 import android.content.res.Configuration
-import android.os.StrictMode
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.app.AppCompatDelegate.NightMode
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
-import com.crashlytics.android.Crashlytics
 import dev.logarithmus.p2pdroid.data.model.BluetoothConnector
 import dev.logarithmus.p2pdroid.data.model.ProfileManager
 import dev.logarithmus.p2pdroid.data.model.UserPreferences
@@ -19,14 +17,12 @@ import dev.logarithmus.p2pdroid.ui.activity.ChatActivity
 import dev.logarithmus.p2pdroid.ui.activity.ConversationsActivity
 import dev.logarithmus.p2pdroid.ui.util.StartStopActivityLifecycleCallbacks
 import dev.logarithmus.p2pdroid.ui.util.ThemeHolder
-import com.kobakei.ratethisapp.RateThisApp
-import io.fabric.sdk.android.Fabric
 import org.koin.android.ext.android.getKoin
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.android.startKoin
 import org.koin.core.scope.Scope
 
-class ChatApplication : Application(), LifecycleObserver, ThemeHolder {
+class ChatApplication: Application(), LifecycleObserver, ThemeHolder {
 
     var isConversationsOpened = false
     var currentChat: String? = null
@@ -43,10 +39,6 @@ class ChatApplication : Application(), LifecycleObserver, ThemeHolder {
     override fun onCreate() {
         super.onCreate()
 
-        if (!BuildConfig.DEBUG) {
-            Fabric.with(this, Crashlytics())
-        }
-
         startKoin(this, listOf(applicationModule,
                 bluetoothConnectionModule, databaseModule, localStorageModule, viewModule))
         localeSession = getKoin().createScope(localeScope)
@@ -55,9 +47,8 @@ class ChatApplication : Application(), LifecycleObserver, ThemeHolder {
 
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
 
-        registerActivityLifecycleCallbacks(object : StartStopActivityLifecycleCallbacks() {
-
-            override fun onActivityStarted(activity: Activity?) {
+        registerActivityLifecycleCallbacks(object: StartStopActivityLifecycleCallbacks() {
+            override fun onActivityStarted(activity: Activity) {
                 when (activity) {
                     is ConversationsActivity -> isConversationsOpened = true
                     is ChatActivity -> currentChat =
@@ -65,37 +56,16 @@ class ChatApplication : Application(), LifecycleObserver, ThemeHolder {
                 }
             }
 
-            override fun onActivityStopped(activity: Activity?) {
+            override fun onActivityStopped(activity: Activity) {
                 when (activity) {
                     is ConversationsActivity -> isConversationsOpened = false
                     is ChatActivity -> currentChat = null
                 }
             }
         })
-
-        val config = RateThisApp.Config().apply {
-            setTitle(R.string.rate_dialog__title)
-            setMessage(R.string.rate_dialog__message)
-            setYesButtonText(R.string.rate_dialog__rate)
-            setNoButtonText(R.string.rate_dialog__no)
-            setCancelButtonText(R.string.rate_dialog__cancel)
-        }
-        RateThisApp.init(config)
-
-        if (BuildConfig.DEBUG) {
-
-            StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder()
-                    .detectAll()
-                    .penaltyLog()
-                    .build())
-            StrictMode.setVmPolicy(StrictMode.VmPolicy.Builder()
-                    .detectAll()
-                    .penaltyLog()
-                    .build())
-        }
     }
 
-    override fun onConfigurationChanged(newConfig: Configuration?) {
+    override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         localeSession.close()
         localeSession = getKoin().createScope(localeScope)

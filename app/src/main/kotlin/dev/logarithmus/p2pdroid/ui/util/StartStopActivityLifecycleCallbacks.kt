@@ -6,13 +6,13 @@ import android.os.Bundle
 
 abstract class StartStopActivityLifecycleCallbacks : Application.ActivityLifecycleCallbacks {
 
-    override fun onActivityResumed(activity: Activity?) {}
+    override fun onActivityResumed(activity: Activity) {}
 
-    override fun onActivityPaused(activity: Activity?) {}
+    override fun onActivityPaused(activity: Activity) {}
 
-    override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {}
+    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {}
 
-    override fun onActivityDestroyed(activity: Activity?) {}
+    override fun onActivityDestroyed(activity: Activity) {}
 
-    override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {}
+    override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}
 }
