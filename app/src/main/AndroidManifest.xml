@@ -1,60 +1,116 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
- Copyright 2014 The Android Open Source Project
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
-     http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
--->
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="dev.logarithmus.p2pdroid"
-    android:versionCode="1"
-    android:versionName="1.0">
+    package="dev.logarithmus.p2pdroid">
 
-    <!-- Min/target SDK versions (<uses-sdk>) managed by build.gradle -->
+    <uses-feature
+        android:name="android.hardware.bluetooth"
+        android:required="true" />
 
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
-        android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:name="dev.logarithmus.dev.logarithmus.p2pdroid.ChatApplication"
+        android:allowBackup="false"
+        android:fullBackupContent="@xml/backup_descriptor"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
-
-        <service android:enabled="true" android:name="com.wifiscanner.server.ServerDataService" />
+        tools:replace="android:allowBackup">
 
         <activity
-            android:name=".MainActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:label="@string/app_name">
+            android:name="dev.logarithmus.dev.logarithmus.p2pdroid.ui.activity.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="image/*" />
+            </intent-filter>
         </activity>
 
         <activity
-            android:name=".DeviceListActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:label="@string/select_device"
-            android:theme="@android:style/Theme.Holo.Dialog" />
+            android:name="dev.logarithmus.dev.logarithmus.p2pdroid.ui.activity.ConversationsActivity"
+            android:screenOrientation="portrait" />
 
+        <activity
+            android:name="dev.logarithmus.dev.logarithmus.p2pdroid.ui.activity.ScanActivity"
+            android:label="@string/scan__scan"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="dev.logarithmus.dev.logarithmus.p2pdroid.ui.activity.ChatActivity"
+            android:label="@string/chat__chat"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+
+        <activity
+            android:name="dev.logarithmus.dev.logarithmus.p2pdroid.ui.activity.ProfileActivity"
+            android:label="@string/initial_setup__initial_setup"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name="dev.logarithmus.dev.logarithmus.p2pdroid.ui.activity.SettingsActivity"
+            android:label="@string/settings__title"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="dev.logarithmus.dev.logarithmus.p2pdroid.ui.activity.ContactChooserActivity"
+            android:label="@string/contact_chooser__title"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="dev.logarithmus.dev.logarithmus.p2pdroid.ui.activity.ImagePreviewActivity"
+            android:label="@string/images__image"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="dev.logarithmus.dev.logarithmus.p2pdroid.ui.activity.ReceivedImagesActivity"
+            android:label="@string/images__received_images"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="dev.logarithmus.dev.logarithmus.p2pdroid.ui.activity.AboutActivity"
+            android:label="@string/about__about"
+            android:screenOrientation="portrait" />
+
+        <service android:name="dev.logarithmus.dev.logarithmus.p2pdroid.data.service.BluetoothConnectionService" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="b26de0978fcc0fa56349d97da37b554f54e1d034" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
+        <provider
+            android:name="dev.logarithmus.dev.logarithmus.p2pdroid.data.file.GenericFileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
     </application>
-
 </manifest>
