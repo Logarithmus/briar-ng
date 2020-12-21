@@ -42,7 +42,7 @@ class BluetoothConnectorImpl(private val context: Context) : BluetoothConnector 
                 setFileListener(fileListenerInner)
             }
 
-            proxy = if (BuildConfig.AUTORESPONDER) AutoresponderProxy(service) else EmptyProxy()
+            proxy = EmptyProxy()
 
             bound = true
             isPreparing = false

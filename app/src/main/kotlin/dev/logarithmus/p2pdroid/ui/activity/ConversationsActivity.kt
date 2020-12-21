@@ -102,8 +102,8 @@ class ConversationsActivity : SkeletonActivity(), ConversationsView {
             var fileToShare: String? = null
 
             if (intent.type == "text/plain") {
-                textToShare = intent.getStringExtra(Intent.EXTRA_TEXT).trim()
-            } else if (intent.type.startsWith("image/")) {
+                textToShare = intent.getStringExtra(Intent.EXTRA_TEXT)!!.trim()
+            } else if (intent.type!!.startsWith("image/")) {
                 val imageUri = intent.getParcelableExtra(Intent.EXTRA_STREAM) as Uri?
                 fileToShare = imageUri?.getFilePath(this)
             }
@@ -138,26 +138,19 @@ class ConversationsActivity : SkeletonActivity(), ConversationsView {
             labels.add(getString(R.string.conversations__pin_to_home_screen))
         }
 
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle(getString(R.string.conversations__options))
-                .setItems(labels.toTypedArray()) { _, which ->
-                    when (which) {
-                        0 -> {
-                            confirmRemoval(conversation.address)
-                        }
-                        1 -> {
-                            if (isCurrent) {
-                                presenter.disconnect()
-                            } else {
-                                requestPinShortcut(conversation)
-                            }
-                        }
-                        2 -> {
-                            requestPinShortcut(conversation)
-                        }
+        AlertDialog.Builder(this)
+            .setTitle(getString(R.string.conversations__options))
+            .setItems(labels.toTypedArray()) { _, which ->
+                when (which) {
+                    0 -> confirmRemoval(conversation.address)
+                    1 -> if (isCurrent) {
+                        presenter.disconnect()
+                    } else {
+                        requestPinShortcut(conversation)
                     }
+                    2 -> requestPinShortcut(conversation)
                 }
-        builder.create().show()
+            }.create().show()
     }
 
     private fun requestPinShortcut(conversation: ConversationViewModel) {

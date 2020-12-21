@@ -32,14 +32,16 @@ class BluetoothScannerImpl(val context: Context) : BluetoothScanner {
             if (BluetoothDevice.ACTION_FOUND == intent.action) {
                 val device = intent
                         .getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)
-                foundDevices[device.address] = device
-                listener?.onDeviceFind(device)
+                device?.let{
+                    foundDevices[device.address] = it
+                    listener?.onDeviceFind(it)
+                }
             }
         }
     }
 
     private val discoverableStateFilter = IntentFilter(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED)
-    private val discoverableStateReceiver = object : BroadcastReceiver() {
+    private val discoverableStateReceiver = object: BroadcastReceiver() {
 
         override fun onReceive(context: Context, intent: Intent) {
 
