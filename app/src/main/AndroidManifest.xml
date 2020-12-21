@@ -10,7 +10,6 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
@@ -86,11 +85,6 @@
         <activity
             android:name=".ui.activity.ReceivedImagesActivity"
             android:label="@string/images__received_images"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name=".ui.activity.AboutActivity"
-            android:label="@string/about__about"
             android:screenOrientation="portrait" />
 
         <service android:name=".data.service.BluetoothConnectionService" />

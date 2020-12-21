@@ -34,7 +34,6 @@ import dev.logarithmus.p2pdroid.utils.bind
 import dev.logarithmus.p2pdroid.utils.getFilePath
 import dev.logarithmus.p2pdroid.utils.getFirstLetter
 import dev.logarithmus.p2pdroid.utils.getNotificationManager
-import com.kobakei.ratethisapp.RateThisApp
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
@@ -73,8 +72,6 @@ class ConversationsActivity : SkeletonActivity(), ConversationsView {
                         ReceivedImagesActivity.start(this@ConversationsActivity, address = null)
                     SettingsPopup.Option.SETTINGS ->
                         SettingsActivity.start(this@ConversationsActivity)
-                    SettingsPopup.Option.ABOUT ->
-                        AboutActivity.start(this@ConversationsActivity)
                 }
             }
         }
@@ -122,9 +119,6 @@ class ConversationsActivity : SkeletonActivity(), ConversationsView {
                 .create()
 
         shortcutsManager.addSearchShortcut()
-
-        RateThisApp.onCreate(this)
-        RateThisApp.showRateDialogIfNeeded(this)
     }
 
     private fun showContextMenu(conversation: ConversationViewModel, isCurrent: Boolean) {

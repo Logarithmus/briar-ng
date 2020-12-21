@@ -3,12 +3,33 @@ plugins{
     kotlin("android")
     // Annotation processor for Kotlin
     kotlin("kapt")
+    //id("io.gitlab.arturbosch.detekt").version("1.15.0")
 }
 
 android.sourceSets.all {
     java.srcDir("src/$name/kotlin")
 }
 
+// detekt {
+//     failFast = true // fail build on any finding
+//     buildUponDefaultConfig = true // preconfigure defaults
+//     //config = files("$projectDir/config/detekt.yml") // point to your custom config defining rules to run, overwriting default behavior
+//     //baseline = file("$projectDir/config/baseline.xml") // a way of suppressing issues before introducing detekt
+//
+//     reports {
+//         html.enabled = true // observe findings in your browser with structure and code snippets
+//         xml.enabled = true // checkstyle like format mainly for integrations like Jenkins
+//         txt.enabled = true // similar to the console output, contains issue signature to manually edit baseline files
+//         sarif.enabled = true // SARIF integration (https://sarifweb.azurewebsites.net/) for integrations with Github
+//     }
+// }
+
+// tasks {
+//     withType<io.gitlab.arturbosch.detekt.Detekt> {
+//         // Target version of the generated JVM bytecode. It is used for type resolution.
+//         this.jvmTarget = "1.8"
+//     }
+// }
 android {
     compileSdkVersion(30)
     buildToolsVersion("30.0.2")
@@ -60,7 +81,6 @@ dependencies {
     implementation("com.github.chrisbanes:PhotoView:2.3.0")
     implementation("com.squareup.picasso:picasso:2.71828")
     implementation("com.github.jkwiecien:EasyImage:2.1.1")
-    implementation("io.github.kobakei:ratethisapp:1.2.0")
     implementation("me.priyesh:chroma:1.0.2")
 
     implementation("org.koin:koin-android:1.0.2")
@@ -68,4 +88,6 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.21")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2")
+
+    //detektPlugins("com.krossovochkin.detekt:umler-scanner:0.1.1")
 }
