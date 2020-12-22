@@ -1,7 +1,5 @@
 %! TEX root = course_report.tex
 
-\usepackage{courier}
-
 \appendixcentered*{\MakeUppercase{Приложение А}\\(обязательное)\\Листинг программного кода}
 \addcontentsline{toc}{section}{Приложение А (обязательное) Листинг программного кода}
 \label{sec:source_code}
@@ -413,5 +411,117 @@ class ChatActivity : SkeletonActivity(), ChatView {
     override fun openImagePicker() {
         EasyImage.openChooserWithGallery(this, getString(R.string.chat__choose_image), 0)
     }
+
+	override fun showImageTransferLayout(fileAddress: String?, fileSize: Long, transferType: ChatView.FileTransferType) {
+
+        textSendingHolder.visibility = View.GONE
+        imageSendingHolder.visibility = View.VISIBLE
+
+        transferringImageHeader.text = getString(if (transferType == ChatView.FileTransferType.SENDING)
+            R.string.chat__sending_image else R.string.chat__receiving_images)
+
+        Picasso.get()
+                .load("file://$fileAddress")
+                .into(object : Target {
+
+                    override fun onPrepareLoad(placeHolderDrawable: Drawable?) {
+                        transferringImagePreview.setImageResource(R.drawable.ic_photo)
+                    }
+
+					  override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) {
+                        transferringImagePreview.setImageResource(R.drawable.ic_photo)
+                    }
+
+                    override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
+                        transferringImagePreview.setImageBitmap(bitmap)
+                    }
+                })
+
+        transferringImageSize.text = fileSize.toReadableFileSize()
+        transferringImageProgressLabel.text = "0%"
+        //FIXME should work with Long
+        transferringImageProgressBar.progress = 0
+        transferringImageProgressBar.max = fileSize.toInt()
+    }
+	 @SuppressLint("SetTextI18n")
+    override fun updateImageTransferProgress(transferredBytes: Long, totalBytes: Long) {
+
+        val percents = transferredBytes.toFloat() / totalBytes * 100
+        transferringImageProgressLabel.text = "${Math.round(percents)}%"
+        //FIXME should work with Long
+        transferringImageProgressBar.progress = transferredBytes.toInt()
+
+    }
+
+    override fun hideImageTransferLayout() {
+        textSendingHolder.visibility = View.VISIBLE
+        imageSendingHolder.visibility = View.GONE
+    }
+
+    override fun showImageTransferCanceled() {
+        Toast.makeText(this, R.string.chat__partner_canceled_image_transfer, Toast.LENGTH_LONG).sh
+ow()
+    }
+
+	 override fun showImageTransferFailure() {
+        Toast.makeText(this, R.string.chat__problem_during_file_transfer, Toast.LENGTH_LONG).show(
+)
+    }
+
+    override fun showReceiverUnableToReceiveImages() = doIfStarted {
+        AlertDialog.Builder(this)
+                .setMessage(R.string.chat__partner_unable_to_receive_images)
+                .setPositiveButton(R.string.general__ok, null)
+                .show()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_chat, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+	 override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == REQUEST_ENABLE_BLUETOOTH) {
+            if (resultCode == Activity.RESULT_OK) {
+                presenter.onBluetoothEnabled()
+            } else {
+                presenter.onBluetoothEnablingFailed()
+            }
+        } else {
+
+            EasyImage.handleActivityResult(requestCode, resultCode, data, this, object : DefaultCallback() {
+
+                override fun onImagesPicked(imageFiles: MutableList<File>, source: EasyImage.ImageSource?, type: Int) {
+                    if (imageFiles.isNotEmpty()) {
+                        presenter.sendFile(imageFiles[0])
+                    }
+                }
+				   override fun onImagePickerError(e: Exception?, source: EasyImage.ImageSource?, type: Int) {
+                    Toast.makeText(this@ChatActivity, R.string.chat__unable_to_pick_image, Toast.L
+ENGTH_LONG).show()
+                }
+                override fun onCanceled(source: EasyImage.ImageSource?, type: Int) {
+                    if (source == EasyImage.ImageSource.CAMERA_IMAGE) {
+                        EasyImage.lastlyTakenButCanceledPhoto(this@ChatActivity)?.delete()
+                    }
+                }
+            })
+        }
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_images -> {
+                ReceivedImagesActivity.start(this, deviceAddress)
+                true
+            }
+			 R.id.action_disconnect -> {
+                presenter.disconnect()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+		}
+	}
 }
 \end{lstlisting}
