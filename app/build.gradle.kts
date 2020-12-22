@@ -82,12 +82,13 @@ dependencies {
     implementation("com.squareup.picasso:picasso:2.71828")
     implementation("com.github.jkwiecien:EasyImage:2.1.1")
     implementation("me.priyesh:chroma:1.0.2")
-
     implementation("org.koin:koin-android:1.0.2")
 
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.21")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2")
 
-    //detektPlugins("com.krossovochkin.detekt:umler-scanner:0.1.1")
+	implementation("com.github.joshjdevl.libsodiumjni:libsodium-jni-aar:2.0.2")
+    
+	//detektPlugins("com.krossovochkin.detekt:umler-scanner:0.1.1")
 }
