@@ -1,4 +1,4 @@
-package dev.logarithmus.p2pdroid.ui.activity
+package dev.logarithmus.p3pdroid.ui.activity
 
 import android.annotation.SuppressLint
 import android.app.Activity
