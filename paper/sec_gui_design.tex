@@ -38,55 +38,79 @@ Design). Разработка интерфейса ориентируется н
 В рамках платформы Android существует понятие Activity -- отдельно взятого экрана приложения.
 Получившийся интерфейс состоит из следующих экранов (Activity):
 \begin{itemize}
-	\item экран чата (ChatActivity) (рис. \ref{fig:chat_activity});
+	\item экран текущего разговора (ChatActivity);
 	\item экран выбора контакта (ContactChooserActivity);
-	\item экран выбора разговора (ConversationsActivity) (рис. \ref{fig:conversations_activity});
+	\item экран выбора разговора (ConversationsActivity);
 	\item экран предпросмотра изображений (ImagePreviewActivity);
-	\item экран информации о пользователе (ProfileActivity) (рис. \ref{fig:profile_activity});
-	\item экран просмотра всех полученных изображений (ReceivedImagesActivity) (рис. \ref{fig:received_images_activity});
-	\item экран сканирования устройств поблизости (ScanActivity) (рис. \ref{fig:scan_activity});
-	\item экран настроек (SettingsActivity) (рис. \ref{fig:settings_activity}).
+	\item экран информации о пользователе (ProfileActivity);
+	\item экран просмотра полученных изображений (ReceivedImagesActivity);
+	\item экран сканирования устройств поблизости (ScanActivity);
+	\item экран настроек (SettingsActivity)
 \end{itemize}
 
-\begin{figure}[ht]
-    \centering                                                           
-    \includegraphics[width=0.8\textwidth]{chat_activity.jpg}
-	\caption{Внешний вид экрана чата}
-	\label{fig:chat_activity}
-\end{figure}
+Ниже представлены изображения экранов текущего чата (см. рисунок \ref{fig:chat_and_conversations_activities}, а) и списка всех чатов (см. рисунок \ref{fig:chat_and_conversations_activities}, б).
+
 
 \begin{figure}[ht]
-    \centering                                                           
-    \includegraphics[width=0.8\textwidth]{conversations_activity.jpg}
-	\caption{Внешний вид экрана выбора разговора}
-	\label{fig:conversations_activity}
+	\centering
+	\begin{subfigure}[t]{0.48\textwidth}
+	    \centering                                                           
+		\fbox{\includegraphics[width=0.8\textwidth]{chat_activity.jpg}}
+		\label{fig:chat_activity}
+		\caption{}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.48\textwidth}
+	    \centering                                                           
+		\fbox{\includegraphics[width=0.8\textwidth]{conversations_activity.jpg}}
+		\label{fig:conversations_activity}
+		\caption{}
+	\end{subfigure}
+	\caption{Внешний вид экранов текущего чата и списка всех чатов}
+	\label{fig:chat_and_conversations_activities}
 \end{figure}
+
+Экран текущего чата содержит сообщения, ранее отправленные данному пользователю, либо принятые от него; текстовое поле для ввода нового сообщения; также имеется кнопка, при нажатии на которую открывается меню выбора изображения, которое будет прикреплено в качестве вложения к очередному сообщению в текущем чате.
+
+На рисунке \ref{fig:profile_and_receivied_images_activities}, а изображён внешний вид экрана профиля (появляется при первом запуске приложения). Экран профиля содержит содержит поле для ввода имени (под этим именем вы будете видны другим пользователям), кнопку выбора цвета фона изображения профиля (т. н. аватар), а также название устройства, заданное в системном меню настроек Bluetooth устройства.
+На рисунке \ref{fig:profile_and_receivied_images_activities}, б представлен экран, содержащий список полученных изображений. Здесь отображаются все изображения, когда-либо полученные от других пользователей.
+При нажатии на одно из изображений из списка, в правом верхнем углу экрана появляется значок удаления данного изображения.
 
 \begin{figure}[ht]
-    \centering                                                           
-    \includegraphics[width=0.8\textwidth]{profile_activity.jpg}
-	\caption{Внешний вид экрана профиля}
-	\label{fig:profile_activity}
+	\centering
+	\begin{subfigure}[t]{0.48\textwidth}
+	    \centering                                                           
+		\fbox{\includegraphics[width=0.8\textwidth]{profile_activity.jpg}}
+		\label{fig:profile_activity}
+		\caption{}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.48\textwidth}
+	    \centering                                                           
+		\fbox{\includegraphics[width=0.8\textwidth]{received_images_activity.jpg}}
+		\label{fig:received_images_activity}
+		\caption{}
+	\end{subfigure}
+	\caption{Внешний вид экранов профиля и полученных изображений}
+	\label{fig:profile_and_receivied_images_activities}
 \end{figure}
+
+На рисунке \ref{fig:scan_and_settings_activities}, а изображён внешний вид экрана сканирования устройств поблизости. На рисунке \ref{fig:scan_and_settings_activities}, б можно увидеть, как выглядит меню настроек разработанного приложения.
 
 \begin{figure}[ht]
-    \centering                                                           
-    \includegraphics[width=0.8\textwidth]{received_images_activity.jpg}
-	\caption{Внешний вид экрана полученный изображений}
-	\label{fig:received_images_activity}
+	\centering
+	\begin{subfigure}[t]{0.48\textwidth}
+	    \centering                                                           
+		\fbox{\includegraphics[width=0.8\textwidth]{scan_activity.jpg}}
+		\label{fig:scan_activity}
+		\caption{}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.48\textwidth}
+	    \centering                                                           
+		\fbox{\includegraphics[width=0.8\textwidth]{settings_activity.jpg}}
+		\label{fig:settings_activity}
+		\caption{}
+	\end{subfigure}
+	\caption{Внешний вид экранов сканирования устройств и настроек}
+	\label{fig:scan_and_settings_activities}
 \end{figure}
 
-\begin{figure}[ht]
-    \centering                                                           
-    \includegraphics[width=0.8\textwidth]{scan_activity.jpg}
-	\caption{Внешний вид экрана сканирования}
-	\label{fig:scan_activity}
-\end{figure}
-
-\begin{figure}[ht]
-    \centering                                                           
-    \includegraphics[width=0.8\textwidth]{settings_activity.jpg}
-	\caption{Внешний вид экрана настроек}
-	\label{fig:settings_activity}
-\end{figure}
-
+На экране устройств поблизости представлены устройства, находящиеся рядом. Экран содержит кнопку перевода своего устройства в режим обнаружения на 300 секунд. Меню настроек содержит опции смены фона экрана чата, переключение темы между светлой и тёмной.
