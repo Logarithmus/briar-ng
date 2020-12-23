@@ -99,14 +99,13 @@
 \setlength{\cftbeforetoctitleskip}{-1em}
 \setlength{\cftaftertoctitleskip}{1em}
 
+
 % Зачем: Определяет отступы слева для записей в таблице содержания.
 % Почему: Пункт 2.2.7 Требований по оформлению пояснительной записки.
 \makeatletter
-	\renewcommand{\@dotsep}{0.5}
-	\renewcommand{\@pnumwidth}{1em}
-	\renewcommand{\@tocrmarg}{2.55em plus1fil}
-	\renewcommand{\l@section}{\@dottedtocline{1}{0.5em}{1.0em}}
-	\renewcommand{\l@subsection}{\@dottedtocline{2}{1.7em}{1.7em}}
+	\renewcommand{\@dotsep}{1}
+	\renewcommand{\l@section}{\@dottedtocline{1}{0.5em}{1.2em}}
+	\renewcommand{\l@subsection}{\@dottedtocline{2}{1.7em}{2.0em}}
 \makeatother
 
 
