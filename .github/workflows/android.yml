@@ -20,6 +20,3 @@ jobs:
 
     - name: Build with Gradle
       run: ./gradlew assembleDebug
-
-    - name: LaTeX
-      uses: xu-cheng/latex-action@v2

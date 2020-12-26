@@ -7,10 +7,13 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
-
+  build_latex:
     runs-on: ubuntu-20.04
-
     steps:
-    - name: LaTeX
-      uses: xu-cheng/latex-action@v2
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v2
+        with:
+          working_directory: paper
+          root_file: course_report.tex
