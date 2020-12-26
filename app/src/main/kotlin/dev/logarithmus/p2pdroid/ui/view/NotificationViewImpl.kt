@@ -36,9 +36,11 @@ class NotificationViewImpl(private val context: Context) : NotificationView {
         val stopPendingIntent = PendingIntent.getService(context, generateCode(), stopIntent, 0)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(NotificationView.CHANNEL_FOREGROUND, context.getString(R.string.notification__channel_background), NotificationManager.IMPORTANCE_LOW).apply {
-                setShowBadge(false)
-            }
+            val channel = NotificationChannel(
+				NotificationView.CHANNEL_FOREGROUND,
+				context.getString(R.string.notification__channel_background),
+				NotificationManager.IMPORTANCE_LOW
+			).apply{ setShowBadge(false) }
             notificationManager.createNotificationChannel(channel)
         }
 
@@ -58,7 +60,12 @@ class NotificationViewImpl(private val context: Context) : NotificationView {
         return builder.build()
     }
 
-    override fun showNewMessageNotification(message: String, displayName: String?, deviceName: String?, address: String, history: List<NotificationCompat.MessagingStyle.Message>, soundEnabled: Boolean) {
+    override fun showNewMessageNotification(message: String,
+											displayName: String?,
+											deviceName: String?,
+											address: String,
+											history: List<NotificationCompat.MessagingStyle.Message>,
+											soundEnabled: Boolean) {
 
         val resultIntent = Intent(context, ChatActivity::class.java).apply {
             putExtra(ChatActivity.EXTRA_ADDRESS, address)
@@ -183,7 +190,12 @@ class NotificationViewImpl(private val context: Context) : NotificationView {
 
     private var transferBuilder: NotificationCompat.Builder? = null
 
-    override fun showFileTransferNotification(displayName: String?, deviceName: String, address: String, file: TransferringFile, transferredBytes: Long, silently: Boolean) {
+    override fun showFileTransferNotification(displayName: String?,
+											  deviceName: String,
+											  address: String,
+											  file: TransferringFile,
+											  transferredBytes: Long,
+											  silently: Boolean) {
 
         val resultIntent = Intent(context, ChatActivity::class.java).apply {
             putExtra(ChatActivity.EXTRA_ADDRESS, address)
