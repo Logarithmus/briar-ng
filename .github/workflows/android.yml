@@ -17,5 +17,9 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
+
     - name: Build with Gradle
       run: ./gradlew assembleDebug
+
+    - name: LaTeX
+      uses: xu-cheng/latex-action@v2
