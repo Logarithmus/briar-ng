@@ -32,7 +32,6 @@ android.sourceSets.all {
 // }
 android {
     compileSdkVersion(30)
-	ndkVersion = "21.3.6528147"
     buildToolsVersion("30.0.2")
     defaultConfig {
         applicationId = "dev.logarithmus.p2pdroid"
